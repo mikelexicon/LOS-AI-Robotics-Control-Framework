@@ -44,7 +44,7 @@ This creates a core mechanism where achieving authorization for potentially risk
 **Typical AI Agent Frameworks:**
 
 * Many AI and robotics frameworks focus on integrating high-level reasoning (like planning or language understanding) with robot control systems. They often allow for complex task specifications and may incorporate separate safety modules (e.g., for collision avoidance) developed independently. Their core command processing might not inherently link safety validation directly to the detail level of the command itself.
-* **Difference:** According to the provided document, LOS mandates a specific command structure and makes the safety/resource check (ORI/CR calculation based on N) an *intrinsic and mandatory* part of processing *every* command. Safety is not just a separate module but is embedded within the core execution protocol through the relationship between command specificity, risk calculation, and resource cost.
+* **Difference:** LOS mandates a specific command structure and makes the safety/resource check (ORI/CR calculation based on N) an *intrinsic and mandatory* part of processing *every* command. Safety is not just a separate module but is embedded within the core execution protocol through the relationship between command specificity, risk calculation, and resource cost.
 
 **Safety Architectures (e.g., Doer/Checker):**
 
@@ -54,9 +54,9 @@ This creates a core mechanism where achieving authorization for potentially risk
 **Safety-Autonomy Trade-off Research:**
 
 * Research widely acknowledges the fundamental tension between granting systems greater autonomy and ensuring safety and predictability. This often involves discussions of human oversight, adjustable autonomy levels, and the limitations of current AI in complex situations.
-* **Difference:** The LOS framework moves beyond acknowledging this trade-off by attempting to *mechanize* its management. It uses the coupled formulas for ORI and CR, both driven by command specificity (N) and constrained by OAL, to provide a specific computational structure intended to enforce a quantifiable balance between command precision/safety and resource efficiency during operation, as demonstrated in the document's use case example.
+* **Difference:** The LOS framework moves beyond acknowledging this trade-off by attempting to *mechanize* its management. It uses the coupled formulas for ORI and CR, both driven by command specificity (N) and constrained by OAL, to provide a specific computational structure intended to enforce a quantifiable balance between command precision/safety and resource efficiency during operation.
 
-In essence, the LOS framework described in the document differentiates itself through its specific, formula-based runtime mechanism that uses command specificity as the key lever to simultaneously influence pre-execution risk assessment and resource cost, governed by a defined authorization level.
+In essence, the LOS framework differentiates itself through its specific, formula-based runtime mechanism that uses command specificity as the key lever to simultaneously influence pre-execution risk assessment and resource cost, governed by a defined authorization level.
 
 
 ## Potential Use Cases
@@ -87,7 +87,7 @@ In essence, the LOS framework described in the document differentiates itself th
 
 **Complex Autonomous Manufacturing and Assembly**
 
-**Suitability for LOS:** As detailed in the framework document's example use case, assembling high-value, sensitive components (e.g., in aerospace, microelectronics, optics) demands extreme precision and guaranteed safety to prevent damage. LOS directly addresses this by linking command specificity (N) to both reduced risk (ORI) and increased resource cost (CR), forcing a deliberate balance. Critical steps like insertion (*APPLY_FORCE*) require numerous parameters (force limits, speed, depth) and conditional checks (*IF* alignment_ok, *UNLESS* force_exceeded) to be authorized under the unit's OAL.
+**Suitability for LOS:** Assembling high-value, sensitive components (e.g., in aerospace, microelectronics, optics) demands extreme precision and guaranteed safety to prevent damage. LOS directly addresses this by linking command specificity (N) to both reduced risk (ORI) and increased resource cost (CR), forcing a deliberate balance. Critical steps like insertion (*APPLY_FORCE*) require numerous parameters (force limits, speed, depth) and conditional checks (*IF* alignment_ok, *UNLESS* force_exceeded) to be authorized under the unit's OAL.
 
 **Scientific Advancement:** LOS provides a robust framework for developing and researching fully autonomous systems capable of assembling next-generation products with intricate designs or novel materials. It allows scientists and engineers to systematically study and optimize the complex trade-offs between precision, safety, task completion probability (due to brittleness), and resource efficiency in robotic manufacturing. This enables the verifiable automation of tasks currently reliant on highly skilled human labor, pushing the boundaries of manufacturing science and capability.
 
