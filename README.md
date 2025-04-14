@@ -1,5 +1,5 @@
 # LOS-AI-Robotics-Control-Framework
-Specification for the Lexicon Operating System (LOS). A framework aiming for ultra-high reliability in AI/robotics by balancing command specificity (N), operational risk (ORI), resource cost (CR), and authorization level (OAL).
+Specification for the Lexicon Operating System (LOS). A framework aiming for ultra-high reliability in AI/Robotics by balancing command specificity (N), operational risk (ORI), resource cost (CR), and authorization level (OAL).
 
 ## Overview
 
