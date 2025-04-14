@@ -7,13 +7,25 @@ The Lexicon Operating System (LOS) specification details a framework and command
 
 ## Core Differentiating Mechanism of LOS
 
-The primary distinction of the LOS framework, as described in the document, lies in its specific, quantifiable, and integrated approach that links the detail within a command directly to both safety assessment and resource usage *before* execution. This involves:
+The primary distinction of the LOS framework, lies in its specific, quantifiable, and integrated approach that links the detail within a command directly to both safety assessment and resource usage *before* execution. This involves:
 
-* **Command Specificity (N):** The total count of operational parameters and conditional constraints in a command.
-* **Operational Risk Index (ORI):** A value calculated *before* execution, representing the command's risk. The document states that increasing command specificity (higher N) mathematically reduces this calculated ORI.
-* **Computational Resource (CR) Cost:** The resource cost associated with executing a command. The document specifies that higher specificity (N) exponentially increases the CR cost.
-* **Operational Authorization Level (OAL):** A predefined limit for each operating unit. A command is only authorized if its calculated ORI is less than or equal to the unit's OAL.
-* **Pre-Execution Checks:** Both the ORI vs. OAL check and the CR cost vs. available CR check must pass *before* the command is allowed to execute.
+*   **Operational Authorization Level (OAL):** A numerical threshold defining the maximum complexity and authority level permitted for an AI unit. Acts as a primary gatekeeper for action authorization.
+*   **Operational Risk Index (ORI):** A calculated score representing the assessed risk of a proposed action *before* execution. It is dynamically influenced by:
+    *   The `*CORE_DIRECTIVE*` (base risk).
+    *   The **Target Resistance Factor (TRF)** (target's state/defenses).
+    *   The **Specificity (N)** of the command (number of parameters [OP] and conditional constraints [CC]). Higher N reduces ORI.
+*   **Computational Resources (CR):** A finite resource pool consumed by actions. The cost scales exponentially with command specificity (N).
+*   **Command Specificity (N):** The total count of optional Operational Parameters (OP) and Conditional Constraints (CC) included in a command directive.
+*   **Target Resistance Factor (TRF):** A dynamic modifier reflecting the target's properties, state, or defenses relative to the intended action, impacting the calculated ORI.
+*   **The Core Trade-off:** LOS deliberately links safety and cost. Increasing command specificity (N) reduces risk (ORI), making actions potentially safer and authorizable, but significantly increases the resource cost (CR). This forces careful, efficient command design.
+
+## Key Features
+
+*   **Designed for High Reliability:** Prioritizes safety, control, and prevention of unauthorized actions through inherent checks.
+*   **Quantifiable Risk Assessment:** Provides a calculable ORI for decision-gating against the unit's OAL.
+*   **Resource Management:** Directly links the precision and complexity of commands to their computational/resource cost.
+*   **Structured Command Protocol:** Mandates a clear syntax for directives, including core actions, targets, parameters, and conditional safety checks (`*IF*`, `*UNLESS*`, etc.).
+*   **Safety Interlocks:** The OAL vs. ORI check and the strict conditional constraints act as non-overrideable safety mechanisms (by default).
 
 This creates a core mechanism where achieving authorization for potentially risky actions (high base risk) necessitates highly detailed and constrained commands (high N). This detail reduces the calculated risk (ORI) but significantly increases the resource cost (CR), forcing a direct trade-off managed by the system's formulas and authorization threshold.
 
@@ -79,32 +91,6 @@ In essence, the LOS framework described in the document differentiates itself th
 
 **Scientific Advancement:** LOS provides a robust framework for developing and researching fully autonomous systems capable of assembling next-generation products with intricate designs or novel materials. It allows scientists and engineers to systematically study and optimize the complex trade-offs between precision, safety, task completion probability (due to brittleness), and resource efficiency in robotic manufacturing. This enables the verifiable automation of tasks currently reliant on highly skilled human labor, pushing the boundaries of manufacturing science and capability.
 
-
-## Abstract
-
-The Lexicon Operating System (LOS) provides a framework for high-reliability AI and robotics operations by tackling the safety-effectiveness dilemma. It introduces a core control mechanism based on Operational Authorization Level (OAL), Computational Resource (CR) costs, and a dynamically calculated Operational Risk Index (ORI). The ORI incorporates task risk, real-time target assessment via the Target Resistance Factor (TRF), and is critically influenced by command specificity (N – the count of parameters and conditions). LOS enforces a key trade-off: greater specificity (higher N) significantly reduces ORI, potentially fitting complex actions under the OAL ceiling, but incurs exponentially higher CR costs. This incentivizes meticulous command formulation, guaranteeing that high-consequence actions require explicit, detailed constraints, thereby embedding quantifiable safety and resource management into the execution protocol for enhanced reliability.
-
-## Core Concepts
-
-The LOS framework is built upon several interconnected components:
-
-*   **Operational Authorization Level (OAL):** A numerical threshold defining the maximum complexity and authority level permitted for an AI unit. Acts as a primary gatekeeper for action authorization.
-*   **Operational Risk Index (ORI):** A calculated score representing the assessed risk of a proposed action *before* execution. It is dynamically influenced by:
-    *   The `*CORE_DIRECTIVE*` (base risk).
-    *   The **Target Resistance Factor (TRF)** (target's state/defenses).
-    *   The **Specificity (N)** of the command (number of parameters [OP] and conditional constraints [CC]). Higher N reduces ORI.
-*   **Computational Resources (CR):** A finite resource pool consumed by actions. The cost scales exponentially with command specificity (N).
-*   **Command Specificity (N):** The total count of optional Operational Parameters (OP) and Conditional Constraints (CC) included in a command directive.
-*   **Target Resistance Factor (TRF):** A dynamic modifier reflecting the target's properties, state, or defenses relative to the intended action, impacting the calculated ORI.
-*   **The Core Trade-off:** LOS deliberately links safety and cost. Increasing command specificity (N) reduces risk (ORI), making actions potentially safer and authorizable, but significantly increases the resource cost (CR). This forces careful, efficient command design.
-
-## Key Features
-
-*   **Designed for High Reliability:** Prioritizes safety, control, and prevention of unauthorized actions through inherent checks.
-*   **Quantifiable Risk Assessment:** Provides a calculable ORI for decision-gating against the unit's OAL.
-*   **Resource Management:** Directly links the precision and complexity of commands to their computational/resource cost.
-*   **Structured Command Protocol:** Mandates a clear syntax for directives, including core actions, targets, parameters, and conditional safety checks (`*IF*`, `*UNLESS*`, etc.).
-*   **Safety Interlocks:** The OAL vs. ORI check and the strict conditional constraints act as non-overrideable safety mechanisms (by default).
 
 ## Accessing the Specification
 
