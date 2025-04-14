@@ -3,7 +3,7 @@ Specification for the Lexicon Operating System (LOS). A framework aiming for ult
 
 ## Overview
 
-The Lexicon Operating System (LOS) specification details a framework and command protocol designed to govern AI agent and robotics operations, particularly in applications requiring ultra-high reliability and safety. It addresses the critical challenge of balancing operational safety with mission effectiveness, mitigating risks associated with both excessive rigidity and uncontrolled flexibility in autonomous systems.
+The Lexicon Operating System (LOS) specification details a framework and command protocol designed to govern AI agent and Robotics operations, particularly in applications requiring ultra-high reliability and safety. It addresses the critical challenge of balancing operational safety with mission effectiveness, mitigating risks associated with both excessive rigidity and uncontrolled flexibility in autonomous systems.
 
 ## Core Differentiating Mechanism of LOS
 
