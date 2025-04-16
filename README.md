@@ -29,60 +29,6 @@ The primary distinction of the LOS framework, lies in its specific, quantifiable
 
 This creates a core mechanism where achieving authorization for potentially risky actions (high base risk) necessitates highly detailed and constrained commands (high N). This detail reduces the calculated risk (ORI) but significantly increases the resource cost (CR), forcing a direct trade-off managed by the system's formulas and authorization threshold.
 
-## LOS Command Example: Precise Lab Sample Handling
-
-**Scenario:** An autonomous robotic arm, "LabHand-25," operates in a biomedical research facility. Its task is to carefully transfer a newly prepared, temperature-sensitive biological sample vial from a centrifuge output rack to the input tray of a delicate analysis machine. Mishandling (dropping, jarring, incorrect placement, temperature deviation) could ruin the sample, wasting valuable research time and materials.
-
-**Unit Profile: LabHand-25**
-
-* **Role:** Precision robotic arm for sample handling.
-* **OAL (Operational Authorization Level):** 25 (Reflects capability for precise, moderately complex tasks, but not extreme force or high-level decision making).
-* **CR Pool:** 150 + (25 * 50) = 150 + 1250 = **1400 CR**
-* **CR Regen Rate:** (100 / 25) CR per 3 sec = 4 CR / 3 sec ≈ **1.33 CR/sec** (Moderate regeneration)
-
-**The Challenge:** Simply moving the vial (`*MOVE vial_xyz TO machine_abc`) is cheap in CR but carries implicit risks (speed, vibration, collision, placement accuracy). The LOS framework encourages/requires explicit parameters and conditions to ensure the sensitive task is performed safely and correctly, fitting within the unit's moderate OAL.
-
-**LOS Command:**
-
-
-`*MOVE target sample_vial_sv47b TO analysis_machine_am3_input_tray SPEED very_slow ACCELERATION minimal_jerk_profile GRIPPER_PRESSURE nominal_secure_non_crushing PATH_PLANNING avoid_vibration_zones *IF* target_vial_secured_in_gripper *IF* destination_tray_confirmed_empty *IF* path_to_destination_clear_visual_lidar *UNLESS* lab_emergency_stop_signal_active *UNLESS* sample_integrity_compromised_flag_set *WHILE* continuous_grip_sensor_feedback_nominal *AND* ambient_temperature_within_spec_range_5_to_8_celsius`
-
-
-**Analysis:**
-
-1. **Core Directive \& Base Risk:** `*MOVE` belongs to the **Minor Kinetic Manipulation** domain.
-    * **Base Risk / Base CR Cost = 4**. This is a relatively low-risk action fundamentally.
-2. **Specificity (N):** The command is highly specific to ensure careful handling:
-    * **OPs (N=5):** `TO`, `SPEED`, `ACCELERATION`, `GRIPPER_PRESSURE`, `PATH_PLANNING`
-    * **CCs (N=7):** `*IF` (x3), `*UNLESS` (x2), `*WHILE` (x1), `*AND` (x1)
-    * **Total N = 5 (OP) + 7 (CC) = 12**
-3. **Operational Risk Index (ORI) Calculation:**
-    * Formula: `Calculated ORI = Base_Risk + TRF - (N * Risk_Reduction_Factor)`
-    * Assume TRF is near 0 for moving a passive, secured vial in a controlled environment.
-    * `Calculated ORI = 4 + 0 - (12 * 0.17)`
-    * `Calculated ORI = 4 - 2.04`
-    * **`Calculated ORI = 1.96`**
-    * **Significance:** The high specificity (N=12) dramatically reduces the assessed risk of this move, making the ORI extremely low (1.96).
-4. **Authorization Check:**
-    * Condition: `Calculated ORI &lt;= Unit OAL`
-    * `1.96 &lt;= 25`
-    * **Result: PASS.** The command is easily authorized under LabHand-25's OAL of 25. The framework confirms that performing the move *with these specific constraints* is well within the unit's authorized operational safety limits.
-5. **Computational Resource (CR) Cost Calculation:**
-    * Formula: `Total CR Cost = Base_CR_Cost * (Multiplier ^ N)` (Rounded up)
-    * `Total CR Cost = 4 * (1.6 ^ 12)`
-    * `Total CR Cost ≈ 4 * 281.47`
-    * **`Total CR Cost ≈ 1126 CR`**
-    * **Result:** While the action's *risk* (ORI=1.96) is very low, the *resource cost* (1126 CR) is substantial! It consumes over 80% of LabHand-25's total CR pool (1400 CR).
-
-**Conclusion \& Demonstration of Strength:**
-
-* **Successful Trade-Off:** This command successfully navigates the LOS framework's core trade-off. The required precision and safety for handling the sensitive sample demanded high specificity (N=12). This high N made the action verifiably safe (ORI=1.96 << OAL=25), ensuring authorization.
-* **Quantified Cost of Safety:** The framework makes the *cost* of that safety explicit and quantifiable. The `1.6 ^ N` multiplier shows that ensuring these 12 parameters and conditions are actively monitored and adhered to during execution requires significant computational resources (1126 CR).
-* **Incentivizes Deliberate Action:** It demonstrates why a simple, cheap command like `*MOVE sample_vial_sv47b TO analysis_machine_am3_input_tray` (N=1, ORI ≈ 3.83, CR Cost ≈ 7) would be inappropriate for this task, even if technically authorized. The LOS framework forces the operator (or higher-level planner) to invest the necessary specificity (and thus CR) to guarantee the careful handling required by the real-world constraints of the task.
-* **Resource Management Highlight:** The high CR cost relative to the unit's pool (1126 / 1400 CR) shows that while LabHand-25 *can* perform this complex, safe move, it cannot do so repeatedly without pausing for CR regeneration. This reflects real-world limitations – complex, highly monitored actions consume more processing power/energy and affect overall throughput.
-
-This example shows how the framework imposes rigorous, quantifiable safety and resource accounting even on seemingly mundane tasks when the context demands high reliability. It clearly demonstrates the exponential cost associated with achieving verifiable safety through detailed command specification, a core strength and principle of the Lexicon Operating System.
-
 ## Comparison with Existing Research and Frameworks
 
 **Existing Safety Standards:**
