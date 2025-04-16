@@ -27,7 +27,8 @@ The primary distinction of the LOS framework, lies in its specific, quantifiable
 *   **Structured Command Protocol:** Mandates a clear syntax for directives, including core actions, targets, parameters, and conditional safety checks (`*IF*`, `*UNLESS*`, etc.).
 *   **Safety Interlocks:** The OAL vs. ORI check and the strict conditional constraints act as non-overrideable safety mechanisms (by default).
 
-This creates a core mechanism where achieving authorization for potentially risky actions (high base risk) necessitates highly detailed and constrained commands (high N). This detail reduces the calculated risk (ORI) but significantly increases the resource cost (CR), forcing a direct trade-off managed by the system's formulas and authorization threshold. A higher OAL is fundamentally linked to greater operational autonomy and capability within this framework, precisely because it enables the unit to execute more complex and resource-intensive (high CR cost) commands. **Low specificity high impact commands are stopped by a combination of OAL and TRF (target's state).**
+This creates a core mechanism where achieving authorization for potentially risky actions (high base risk) necessitates highly detailed and constrained commands (high N). This detail reduces the calculated risk (ORI) but significantly increases the resource cost (CR), forcing a direct trade-off managed by the system's formulas and authorization threshold.
+
 ## LOS Command Example
 
 `
@@ -50,7 +51,7 @@ This command is drawn directly from the **Collaborative Robot Assembly use case 
 * The **framework's formula** translates this necessary specificity (high N) into a lower ORI.
 * The **CR cost formula** prevents infinite specificity, forcing a balance where the command is specific *enough* for safety (resulting in low ORI) but not *so* specific that it becomes unaffordable.
 
-For complex tasks, it must use high specificity to ensure safety and success, which naturally lowers the ORI. The actual operational ceiling encountered is often the CR budget needed to pay for that specificity, rather than the OAL risk ceiling itself. The low ORI is a consequence of ensuring safety within resource limits for demanding operations.
+For complex tasks, it must use high specificity to ensure safety and success, which naturally lowers the ORI. The actual operational ceiling encountered is often the CR budget needed to pay for that specificity, rather than the OAL risk ceiling itself. A higher OAL is fundamentally linked to greater operational autonomy and capability within the framework, precisely because it enables the unit to execute more complex and resource-intensive (high CR cost) commands. **Low specificity high impact commands are stopped by a combination of OAL and TRF (target's state).**
 
 ## Comparison with Existing Research and Frameworks
 
