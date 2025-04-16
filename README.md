@@ -34,6 +34,15 @@ This creates a core mechanism where achieving authorization for potentially risk
 `
 *APPLY_FORCE target insertion_socket_dh_12 METHOD controlled_linear_insertion VIA osm_9_in_gripper INSERTION_PROFILE force_limited_depth_12mm_max_7N MONITOR xy_shear_below_1N SPEED 1mm_per_second *IF* alignment_confirmed_within_tolerance *IF* target_device_stable_in_fixture *IF* safety_zone_clear_verified *UNLESS* insertion_force_limit_exceeded *UNLESS* component_tilt_exceeds_threshold *WHILE* force_torque_sensor_monitoring_active
 `
+This command is drawn directly from the **Collaborative Robot Assembly use case (Section 12.0)** in the **[Full Specification Document (PDF)](Lexicon_OS_Framework_v1.0.pdf)**, specifically **Revised Command 3.1b** for the critical **Phase 3: Controlled Force Insertion**.
+
+**Why it's a best-use case example balancing ORI and OAL:**
+
+1. **High-Consequence Action:** The core directive `*APPLY_FORCE` (Base Risk 5) involves physical interaction to insert a delicate component. This inherently carries significant risk if not precisely controlled.
+2. **Specificity Reduces Risk:** The command includes numerous specific parameters (OPs) and safety conditions (CCs) – N=11 in total. According to the framework's formula (`ORI = Base_Risk + TRF - (N * Risk_Reduction_Factor)`), this high specificity drastically reduces the calculated Operational Risk Index (ORI) from the base of 5 down to `3.13 + TRF`.
+3. **Authorization within OAL:** The unit (AR-2 "Dexter") has an OAL of 35. The significantly reduced ORI (3.13 + TRF) fits comfortably under this authorization limit, ensuring the potentially damaging action is only permitted when heavily constrained for safety.
+4. **Resource Management:** The high specificity (N=11) also results in a significant Computational Resource (CR) cost (approx. 880 CR). The framework shows this command was chosen after an even *more* specific version (N=13) was *denied* for exceeding the unit's CR pool.
+5. **The Balance:** This command exemplifies the core trade-off of the LOS framework. It demonstrates how a potentially high-risk action (requiring a reasonably high OAL like 35) can be made safe and authorized by adding detailed constraints. These constraints lower the ORI well below the OAL, but at a significant CR cost that must also be managed. It represents a successful balance point between ensuring safety (low ORI relative to Base Risk), operating within authority (ORI < OAL), and resource affordability (CR Cost < CR Pool). While the final ORI isn't numerically *at* the OAL limit, the command tackles a task complex enough to require that level of authorization and careful management of the framework's constraints.
 
 ## Comparison with Existing Research and Frameworks
 
