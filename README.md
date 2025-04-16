@@ -45,7 +45,7 @@ This creates a core mechanism where achieving authorization for potentially risk
 **LOS Command:**
 
 
-*MOVE target sample_vial_sv47b TO analysis_machine_am3_input_tray SPEED very_slow ACCELERATION minimal_jerk_profile GRIPPER_PRESSURE nominal_secure_non_crushing PATH_PLANNING avoid_vibration_zones *IF* target_vial_secured_in_gripper *IF* destination_tray_confirmed_empty *IF* path_to_destination_clear_visual_lidar *UNLESS* lab_emergency_stop_signal_active *UNLESS* sample_integrity_compromised_flag_set *WHILE* continuous_grip_sensor_feedback_nominal *AND* ambient_temperature_within_spec_range_5_to_8_celsius
+MOVE target sample_vial_sv47b TO analysis_machine_am3_input_tray SPEED very_slow ACCELERATION minimal_jerk_profile GRIPPER_PRESSURE nominal_secure_non_crushing PATH_PLANNING avoid_vibration_zones *IF* target_vial_secured_in_gripper *IF* destination_tray_confirmed_empty *IF* path_to_destination_clear_visual_lidar *UNLESS* lab_emergency_stop_signal_active *UNLESS* sample_integrity_compromised_flag_set *WHILE* continuous_grip_sensor_feedback_nominal *AND* ambient_temperature_within_spec_range_5_to_8_celsius
 
 
 **Analysis:**
