@@ -29,6 +29,12 @@ The primary distinction of the LOS framework, lies in its specific, quantifiable
 
 This creates a core mechanism where achieving authorization for potentially risky actions (high base risk) necessitates highly detailed and constrained commands (high N). This detail reduces the calculated risk (ORI) but significantly increases the resource cost (CR), forcing a direct trade-off managed by the system's formulas and authorization threshold.
 
+## LOS Command Example
+
+`
+*APPLY_FORCE target insertion_socket_dh_12 METHOD controlled_linear_insertion VIA osm_9_in_gripper INSERTION_PROFILE force_limited_depth_12mm_max_7N MONITOR xy_shear_below_1N SPEED 1mm_per_second *IF* alignment_confirmed_within_tolerance *IF* target_device_stable_in_fixture *IF* safety_zone_clear_verified *UNLESS* insertion_force_limit_exceeded *UNLESS* component_tilt_exceeds_threshold *WHILE* force_torque_sensor_monitoring_active
+`
+
 ## Comparison with Existing Research and Frameworks
 
 **Existing Safety Standards:**
