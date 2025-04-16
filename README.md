@@ -51,7 +51,7 @@ This command is drawn directly from the **Collaborative Robot Assembly use case 
 * The **framework's formula** translates this necessary specificity (high N) into a lower ORI.
 * The **CR cost formula** prevents infinite specificity, forcing a balance where the command is specific *enough* for safety (resulting in low ORI) but not *so* specific that it becomes unaffordable.
 
-For complex tasks, it must use high specificity to ensure safety and success, which naturally lowers the ORI. The actual operational ceiling encountered is often the CR budget needed to pay for that specificity, rather than the OAL risk ceiling itself. A higher OAL is fundamentally linked to greater operational autonomy and capability within the framework, precisely because it enables the unit to execute more complex and resource-intensive (high CR cost) commands. **Low specificity high impact commands are stopped by a combination of OAL and TRF (target's state).**
+For complex tasks, it must use high specificity to ensure safety and success, which naturally lowers the ORI. The actual operational ceiling encountered is often the CR budget needed to pay for that specificity, rather than the OAL risk ceiling itself. A higher OAL is fundamentally linked to greater operational autonomy and capability within the framework, precisely because it enables the unit to execute more complex and resource-intensive (high CR cost) commands. **Low specificity high impact commands are stopped by a combination of OAL and TRF.**
 
 ## Comparison with Existing Research and Frameworks
 
