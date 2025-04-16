@@ -37,13 +37,21 @@ This creates a core mechanism where achieving authorization for potentially risk
 
 This command is drawn directly from the **Collaborative Robot Assembly use case (Section 12.0)** in the **[Full Specification Document (PDF)](Lexicon_OS_Framework_v1.0.pdf)**, specifically **Revised Command 3.1b** for the critical **Phase 3: Controlled Force Insertion**.
 
-**Why it's a best-use case example balancing ORI and OAL:**
+**Balancing ORI and OAL:**
 
 1. **High-Consequence Action:** The core directive `*APPLY_FORCE` (Base Risk 5) involves physical interaction to insert a delicate component. This inherently carries significant risk if not precisely controlled.
 2. **Specificity Reduces Risk:** The command includes numerous specific parameters (OPs) and safety conditions (CCs) – N=11 in total. According to the framework's formula (`ORI = Base_Risk + TRF - (N * Risk_Reduction_Factor)`), this high specificity drastically reduces the calculated Operational Risk Index (ORI) from the base of 5 down to `3.13 + TRF`.
 3. **Authorization within OAL:** The unit (AR-2 "Dexter") has an OAL of 35. The significantly reduced ORI (3.13 + TRF) fits comfortably under this authorization limit, ensuring the potentially damaging action is only permitted when heavily constrained for safety.
 4. **Resource Management:** The high specificity (N=11) also results in a significant Computational Resource (CR) cost (approx. 880 CR). The framework shows this command was chosen after an even *more* specific version (N=13) was *denied* for exceeding the unit's CR pool.
 5. **The Balance:** This command exemplifies the core trade-off of the LOS framework. It demonstrates how a potentially high-risk action (requiring a reasonably high OAL like 35) can be made safe and authorized by adding detailed constraints. These constraints lower the ORI well below the OAL, but at a significant CR cost that must also be managed. It represents a successful balance point between ensuring safety (low ORI relative to Base Risk), operating within authority (ORI < OAL), and resource affordability (CR Cost < CR Pool). While the final ORI isn't numerically *at* the OAL limit, the command tackles a task complex enough to require that level of authorization and careful management of the framework's constraints.
+
+**In summary, the mechanism isn't the unit 'choosing' to be risk-averse.**
+
+* The **task's requirements** demanded specificity (high N) for safety and precision.
+* The **framework's formula** translates this necessary specificity (high N) into a lower ORI.
+* The **CR cost formula** prevents infinite specificity, forcing a balance where the command is specific *enough* for safety (resulting in low ORI) but not *so* specific that it becomes unaffordable.
+
+For complex tasks, it must use high specificity to ensure safety and success, which naturally lowers the ORI. The actual operational ceiling encountered is often the CR budget needed to pay for that specificity, rather than the OAL risk ceiling itself. The low ORI is a consequence of ensuring safety within resource limits for demanding operations.
 
 ## Comparison with Existing Research and Frameworks
 
