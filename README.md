@@ -34,6 +34,7 @@ This creates a core mechanism where achieving authorization for potentially risk
 `
 *APPLY_FORCE target insertion_socket_dh_12 METHOD controlled_linear_insertion VIA osm_9_in_gripper INSERTION_PROFILE force_limited_depth_12mm_max_7N MONITOR xy_shear_below_1N SPEED 1mm_per_second *IF* alignment_confirmed_within_tolerance *IF* target_device_stable_in_fixture *IF* safety_zone_clear_verified *UNLESS* insertion_force_limit_exceeded *UNLESS* component_tilt_exceeds_threshold *WHILE* force_torque_sensor_monitoring_active
 `
+
 This command is drawn directly from the **Collaborative Robot Assembly use case (Section 12.0)** in the **[Full Specification Document (PDF)](Lexicon_OS_Framework_v1.0.pdf)**, specifically **Revised Command 3.1b** for the critical **Phase 3: Controlled Force Insertion**.
 
 **Why it's a best-use case example balancing ORI and OAL:**
